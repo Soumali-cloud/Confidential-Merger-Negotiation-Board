@@ -42,6 +42,12 @@ npm run verify:network          # Verify deployment
 # Utilities
 npm run setup                   # Show setup instructions
 ```
+## UI SCREENSHOT
+
+![UI](Screenshot 2026-02-15 182730.png)
+![UI](Screenshot 2026-02-15 182754.png)
+![UI](Screenshot 2026-02-15 182816.png)
+![UI](Screenshot 2026-02-15 182907.png)
 
 ## ✨ Features
 
