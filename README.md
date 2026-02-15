@@ -1,3 +1,9 @@
+"contractAddress": "87833b34d7a905a44c18c8da42ab01aaca840405db08d1a9b2f06770be983cdd"
+
+
+
+
+
 # Confidential Merger Negotiation Board
 
 A zero-knowledge smart contract application that allows companies to prove financial qualification for M&A negotiations without revealing sensitive financial information.
