@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confidential Merger Negotiation Board</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">🔐</span>
+                <h1>Confidential Board</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#features" class="nav-link">Features</a></li>
+                <li><a href="#qualify" class="nav-link">Qualify</a></li>
+                <li><a href="#status" class="nav-link">Status</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-left">
+                <h2>Confidential Merger Negotiation Board</h2>
+                <p>Share verified financial metrics via zero-knowledge proofs without full disclosure until deal is signed</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="scrollToSection('qualify')">Get Started</button>
+                    <button class="btn btn-secondary" onclick="scrollToSection('features')">Learn More</button>
+                </div>
+            </div>
+            <div class="hero-right">
+                <div class="hero-graphic">
+                    <div class="circle circle-1"></div>
+                    <div class="circle circle-2"></div>
+                    <div class="circle circle-3"></div>
+                    <span class="hero-icon">🤝</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2>How It Works</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Zero-Knowledge Proofs</h3>
+                    <p>Prove financial qualification without revealing actual numbers. Complete privacy guaranteed.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Private Financial Metrics</h3>
+                    <p>Companies prove revenue, assets, and solvency without disclosing exact amounts.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✓</div>
+                    <h3>Verified Qualifications</h3>
+                    <p>Network cryptographically verifies all proofs. Impossible to fake qualifications.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📋</div>
+                    <h3>Public Audit Trail</h3>
+                    <p>Transparent count of qualified parties. See how many companies have proven qualification.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Blockchain Verified</h3>
+                    <p>Deployed on Midnight Network. Immutable, verifiable, transparent.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>On-Device Computation</h3>
+                    <p>All proofs generated locally. Your data never leaves your device.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Qualification Section -->
+    <section id="qualify" class="qualify-section">
+        <div class="container">
+            <h2>Submit Qualification</h2>
+            <p class="section-subtitle">Prove your financial standing without revealing amounts</p>
+            
+            <div class="qualify-content">
+                <div class="qualify-form">
+                    <form id="qualificationForm">
+                        <div class="form-group">
+                            <label>Company Name</label>
+                            <input type="text" id="companyName" placeholder="Your Company Name" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Your Revenue (Confidential)</label>
+                                <input type="number" id="privateRevenue" placeholder="Enter in millions" min="0" required>
+                                <small>💡 Not transmitted to blockchain</small>
+                            </div>
+                            <div class="form-group">
+                                <label>Your Assets (Confidential)</label>
+                                <input type="number" id="privateAssets" placeholder="Enter in millions" min="0" required>
+                                <small>💡 Not transmitted to blockchain</small>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Your Liabilities (Confidential)</label>
+                                <input type="number" id="privateLiabilities" placeholder="Enter in millions" min="0" required>
+                                <small>💡 Not transmitted to blockchain</small>
+                            </div>
+                            <div class="form-group">
+                                <label>Deal Name</label>
+                                <input type="text" id="dealName" placeholder="e.g., Merger Deal 2026" required>
+                            </div>
+                        </div>
+
+                        <div class="thresholds-section">
+                            <h4>📋 Deal Qualification Thresholds</h4>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Minimum Revenue Threshold</label>
+                                    <input type="number" id="minRevenueThreshold" placeholder="100" value="100" min="0" required>
+                                    <small>In millions</small>
+                                </div>
+                                <div class="form-group">
+                                    <label>Minimum Asset Threshold</label>
+                                    <input type="number" id="minAssetThreshold" placeholder="500" value="500" min="0" required>
+                                    <small>In millions</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-large">Submit Qualification Proof</button>
+                    </form>
+                </div>
+
+                <div class="qualify-info">
+                    <div class="info-card">
+                        <h4>🔐 What Happens?</h4>
+                        <ol>
+                            <li>You enter your financial data (stays on your device)</li>
+                            <li>Zero-knowledge proof is generated locally</li>
+                            <li>Only the proof (not your data) is sent to blockchain</li>
+                            <li>Network verifies your qualification cryptographically</li>
+                            <li>Your company is marked as "qualified" publicly</li>
+                        </ol>
+                    </div>
+
+                    <div class="info-card">
+                        <h4>✓ What Gets Verified?</h4>
+                        <ul>
+                            <li>✓ Revenue ≥ minimum threshold</li>
+                            <li>✓ Assets ≥ minimum threshold</li>
+                            <li>✓ Company is solvent (Assets > Liabilities)</li>
+                            <li>✓ All verified WITHOUT revealing amounts</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-card">
+                        <h4>🛡️ Privacy Guaranteed</h4>
+                        <ul>
+                            <li>Your actual financial data stays private</li>
+                            <li>Only cryptographic proof submitted</li>
+                            <li>Blockchain verifies without seeing amounts</li>
+                            <li>Public knows you're qualified, not how much</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Status & Results Section -->
+    <section id="status" class="status-section">
+        <div class="container">
+            <h2>Network Status & Results</h2>
+            
+            <div class="status-grid">
+                <div class="status-card">
+                    <div class="status-header">
+                        <h3>Contract Deployment</h3>
+                        <span class="status-badge status-ready">✓ Ready</span>
+                    </div>
+                    <div class="status-content">
+                        <p><strong>Project Name:</strong> Confidential Merger Negotiation Board</p>
+                        <p><strong>Status:</strong> Production Ready</p>
+                        <p><strong>Contract:</strong> Compiled & Validated</p>
+                        <p><strong>Network:</strong> Midnight Network</p>
+                    </div>
+                </div>
+
+                <div class="status-card">
+                    <div class="status-header">
+                        <h3>Network Configuration</h3>
+                        <span class="status-badge status-info">ℹ</span>
+                    </div>
+                    <div class="status-content">
+                        <div class="config-item">
+                            <label>Selected Network:</label>
+                            <select id="networkSelect" onchange="updateNetworkConfig()">
+                                <option value="local">Local Network (Development)</option>
+                                <option value="preview">Preview Network (Testing)</option>
+                                <option value="custom">Custom Network</option>
+                            </select>
+                        </div>
+                        <div id="networkEndpoints" style="margin-top: 15px;">
+                            <p><strong>Indexer:</strong> <code>http://127.0.0.1:8088</code></p>
+                            <p><strong>Node:</strong> <code>http://127.0.0.1:9944</code></p>
+                            <p><strong>Proof Server:</strong> <code>http://127.0.0.1:6300</code></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="status-card">
+                    <div class="status-header">
+                        <h3>Qualified Companies</h3>
+                        <span class="status-badge status-success" id="qualifiedCount">0</span>
+                    </div>
+                    <div class="status-content">
+                        <p id="qualifiedInfo" class="info-text">Waiting for first submission...</p>
+                        <button id="refreshCountBtn" class="btn btn-small">Refresh Count</button>
+                    </div>
+                </div>
+
+                <div class="status-card">
+                    <div class="status-header">
+                        <h3>Recent Submissions</h3>
+                        <span class="status-badge status-info">📋</span>
+                    </div>
+                    <div class="status-content">
+                        <div id="submissionsList" class="submissions-list">
+                            <p class="placeholder">No submissions yet</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deployment & Integration Section -->
+    <section class="deployment-section">
+        <div class="container">
+            <h2>Deployment & Integration</h2>
+            
+            <div class="deployment-tabs">
+                <button class="tab-button active" data-tab="deploy-guide">Deployment Guide</button>
+                <button class="tab-button" data-tab="deploy-commands">Commands</button>
+                <button class="tab-button" data-tab="deploy-info">Contract Info</button>
+            </div>
+
+            <div id="deploy-guide" class="tab-content active">
+                <div class="deployment-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Install Dependencies</h4>
+                            <code>npm install</code>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Build Project</h4>
+                            <code>npm run build</code>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Deploy Contract</h4>
+                            <code>npm run deploy:confidential</code>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Verify Deployment</h4>
+                            <code>npm run verify</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="deploy-commands" class="tab-content">
+                <div class="commands-list">
+                    <div class="command-item">
+                        <strong>Build everything:</strong>
+                        <code>npm run build</code>
+                    </div>
+                    <div class="command-item">
+                        <strong>Deploy contract:</strong>
+                        <code>npm run deploy:confidential</code>
+                    </div>
+                    <div class="command-item">
+                        <strong>Verify deployment:</strong>
+                        <code>npm run verify</code>
+                    </div>
+                    <div class="command-item">
+                        <strong>Check network:</strong>
+                        <code>npm run verify:network</code>
+                    </div>
+                    <div class="command-item">
+                        <strong>Compile contract:</strong>
+                        <code>npm run compile:confidential</code>
+                    </div>
+                </div>
+            </div>
+
+            <div id="deploy-info" class="tab-content">
+                <div class="info-boxes">
+                    <div class="info-box">
+                        <h4>🔐 Smart Contract Details</h4>
+                        <ul>
+                            <li><strong>Name:</strong> Confidential.compact</li>
+                            <li><strong>Type:</strong> Zero-Knowledge Proof Contract</li>
+                            <li><strong>Circuits:</strong> 2 (Impure + Pure)</li>
+                            <li><strong>Status:</strong> Compiled & Ready</li>
+                        </ul>
+                    </div>
+                    <div class="info-box">
+                        <h4>📋 Available Circuits</h4>
+                        <ul>
+                            <li><code>submit_qualification()</code> - Submit ZK proof</li>
+                            <li><code>get_qualified_count()</code> - Query qualified count</li>
+                        </ul>
+                    </div>
+                    <div class="info-box">
+                        <h4>🌐 Network Support</h4>
+                        <ul>
+                            <li>✓ Local Network</li>
+                            <li>✓ Preview Network</li>
+                            <li>✓ Custom Networks</li>
+                            <li>✓ Mainnet Ready</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Confidential Merger Board</h4>
+                <p>Zero-Knowledge Smart Contract for M&A Negotiations</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#qualify">Qualify</a></li>
+                    <li><a href="#status">Status</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Documentation</h4>
+                <ul>
+                    <li><a href="../README.md" target="_blank">Read Me</a></li>
+                    <li><a href="./README.md" target="_blank">Frontend Guide</a></li>
+                    <li><a href="../DEPLOYMENT_GUIDE.md" target="_blank">Deploy Guide</a></li>
+                    <li><a href="../FRONTEND_INTEGRATION.md" target="_blank">Integration</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Technology</h4>
+                <p>Built with:</p>
+                <ul>
+                    <li>Zero-Knowledge Proofs</li>
+                    <li>Midnight Network</li>
+                    <li>TypeScript</li>
+                    <li>Compact Language</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Confidential Merger Negotiation Board. All rights reserved.</p>
+            <p>Powered by Midnight Network | Version 1.0.0</p>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>✓ Submission Successful</h3>
+                <span class="close" onclick="closeModal('successModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p id="successMessage"></p>
+                <div class="transaction-info">
+                    <p><strong>Company:</strong> <span id="submissionCompany"></span></p>
+                    <p><strong>Deal:</strong> <span id="submissionDeal"></span></p>
+                    <p><strong>Status:</strong> <span class="badge-success">✓ Qualified</span></p>
+                    <p><strong>Time:</strong> <span id="submissionTime"></span></p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="closeModal('successModal')">Close</button>
+                <button class="btn btn-secondary" onclick="resetForm()">Submit Another</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Processing Modal -->
+    <div id="processingModal" class="modal">
+        <div class="modal-content modal-processing">
+            <div class="spinner"></div>
+            <h3>Processing Qualification...</h3>
+            <p id="processingMessage">Generating zero-knowledge proof...</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

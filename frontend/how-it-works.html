@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How It Works - Confidential M&A Board</title>
+    <link rel="stylesheet" href="styles-dark.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="landing.html" class="navbar-brand">
+                <span class="navbar-icon">🔐</span>
+                <span>ZKovenant</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="landing.html" class="nav-link">Home</a></li>
+                <li><a href="features.html" class="nav-link">Features</a></li>
+                <li><a href="how-it-works.html" class="nav-link active">How It Works</a></li>
+                <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Header -->
+        <section class="section" style="background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%); padding-top: 4rem; padding-bottom: 2rem;">
+            <div class="container">
+                <h1 class="section-title">How It Works</h1>
+                <p class="section-subtitle">A comprehensive walkthrough of the proof generation process</p>
+            </div>
+        </section>
+
+        <!-- 6-Step Process -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title" style="margin-bottom: 2rem;">The 6-Step Process</h2>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
+                    <!-- Step 1 -->
+                    <div class="card" style="border-left: 4px solid var(--primary);">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                            <div style="font-size: 2rem; font-weight: 800; color: var(--primary);">1</div>
+                            <h3 style="margin: 0;">Enter Financial Data</h3>
+                        </div>
+                        <p>Start by entering your company's financial information:</p>
+                        <ul style="margin: 1rem 0 0 1.5rem; color: var(--text-secondary);">
+                            <li>Company name and ID</li>
+                            <li>Annual revenue</li>
+                            <li>Total assets</li>
+                            <li>Total liabilities</li>
+                            <li>Custom deal parameters</li>
+                        </ul>
+                        <div class="badge badge-primary" style="margin-top: 1rem;">Data Input</div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="card" style="border-left: 4px solid var(--secondary);">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                            <div style="font-size: 2rem; font-weight: 800; color: var(--secondary);">2</div>
+                            <h3 style="margin: 0;">Generate Commitment</h3>
+                        </div>
+                        <p>System creates a cryptographic commitment hash:</p>
+                        <ul style="margin: 1rem 0 0 1.5rem; color: var(--text-secondary);">
+                            <li>Generates unique nonce</li>
+                            <li>Hashes data with SHA256</li>
+                            <li>Creates commitment binding</li>
+                            <li>Prevents witness manipulation</li>
+                        </ul>
+                        <div class="badge badge-info" style="margin-top: 1rem;">Cryptography</div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="card" style="border-left: 4px solid var(--info);">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                            <div style="font-size: 2rem; font-weight: 800; color: var(--info);">3</div>
+                            <h3 style="margin: 0;">Create Proof</h3>
+                        </div>
+                        <p>Generate zero-knowledge proof statements:</p>
+                        <ul style="margin: 1rem 0 0 1.5rem; color: var(--text-secondary);">
+                            <li>Revenue proof statement</li>
+                            <li>Asset proof statement</li>
+                            <li>Solvency computation</li>
+                            <li>Net worth validation</li>
+                            <li>Debt ratio analysis</li>
+                        </ul>
+                        <div class="badge badge-success" style="margin-top: 1rem;">Zero-Knowledge</div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="card" style="border-left: 4px solid var(--warning);">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                            <div style="font-size: 2rem; font-weight: 800; color: var(--warning);">4</div>
+                            <h3 style="margin: 0;">Sign Proof</h3>
+                        </div>
+                        <p>Authenticate proof with digital signature:</p>
+                        <ul style="margin: 1rem 0 0 1.5rem; color: var(--text-secondary);">
+                            <li>ECDSA signature generation</li>
+                            <li>Company key signing</li>
+                            <li>Proof verification</li>
+                            <li>Authorization establishment</li>
+                        </ul>
+                        <div class="badge badge-warning" style="margin-top: 1rem;">Authentication</div>
+                    </div>
+
+                    <!-- Step 5 -->
+                    <div class="card" style="border-left: 4px solid var(--success);">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                            <div style="font-size: 2rem; font-weight: 800; color: var(--success);">5</div>
+                            <h3 style="margin: 0;">Real-Time Validation</h3>
+                        </div>
+                        <p>System validates all proof conditions:</p>
+                        <ul style="margin: 1rem 0 0 1.5rem; color: var(--text-secondary);">
+                            <li>Revenue check (meets minimum)</li>
+                            <li>Asset verification</li>
+                            <li>Solvency ratio validation</li>
+                            <li>Net worth confirmation</li>
+                            <li>Debt ratio assessment</li>
+                        </ul>
+                        <div class="badge badge-success" style="margin-top: 1rem;">Validation</div>
+                    </div>
+
+                    <!-- Step 6 -->
+                    <div class="card" style="border-left: 4px solid var(--danger);">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                            <div style="font-size: 2rem; font-weight: 800; color: var(--danger);">6</div>
+                            <h3 style="margin: 0;">Submit to Blockchain</h3>
+                        </div>
+                        <p>Record proof immutably on blockchain:</p>
+                        <ul style="margin: 1rem 0 0 1.5rem; color: var(--text-secondary);">
+                            <li>Deploy to Midnight Network</li>
+                            <li>Create audit trail</li>
+                            <li>Generate transaction hash</li>
+                            <li>Establish immutable record</li>
+                        </ul>
+                        <div class="badge badge-danger" style="margin-top: 1rem;">Blockchain</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Details -->
+        <section class="section" style="background: var(--bg-secondary);">
+            <div class="container">
+                <h2 class="section-title">Technical Deep Dive</h2>
+
+                <div class="grid-2">
+                    <div class="card">
+                        <h3>Cryptographic Commitment</h3>
+                        <p>The foundation of proof integrity:</p>
+                        <ul style="margin: 1.5rem 0 0 1.5rem; color: var(--text-secondary);">
+                            <li><strong>Hash Function:</strong> SHA256</li>
+                            <li><strong>Input:</strong>(revenue, assets, liabilities, nonce)</li>
+                            <li><strong>Output:</strong> 256-bit commitment hash</li>
+                            <li><strong>Purpose:</strong> Bind financial data</li>
+                            <li><strong>Security:</strong> Collision-resistant</li>
+                        </ul>
+                        <p style="margin-top: 1.5rem; color: var(--text-muted); font-size: 0.875rem;">Prevents witness modification and ensures proof authenticity.</p>
+                    </div>
+
+                    <div class="card">
+                        <h3>Digital Signature</h3>
+                        <p>Authentication and authorization:</p>
+                        <ul style="margin: 1.5rem 0 0 1.5rem; color: var(--text-secondary);">
+                            <li><strong>Algorithm:</strong> ECDSA</li>
+                            <li><strong>Curve:</strong> Prime256v1</li>
+                            <li><strong>Sign Data:</strong> Proof metadata</li>
+                            <li><strong>Verify With:</strong> Public key</li>
+                            <li><strong>Output:</strong> (r, s) signature pair</li>
+                        </ul>
+                        <p style="margin-top: 1.5rem; color: var(--text-muted); font-size: 0.875rem;">Certifies proof origin and prevents tampering.</p>
+                    </div>
+
+                    <div class="card">
+                        <h3>Proof Conditions</h3>
+                        <p>Real-time validation checks:</p>
+                        <ul style="margin: 1.5rem 0 0 1.5rem; color: var(--text-secondary);">
+                            <li><strong>Revenue:</strong> annual_revenue ≥ min_revenue</li>
+                            <li><strong>Assets:</strong> total_assets ≥ min_assets</li>
+                            <li><strong>Solvency:</strong> assets/liabilities ≥ min_ratio</li>
+                            <li><strong>Net Worth:</strong> assets - liabilities ≥ min_nw</li>
+                            <li><strong>Debt Ratio:</strong> liabilities/assets ≤ max_ratio</li>
+                        </ul>
+                        <p style="margin-top: 1.5rem; color: var(--text-muted); font-size: 0.875rem;">All conditions evaluated before blockchain submission.</p>
+                    </div>
+
+                    <div class="card">
+                        <h3>Nonce Generation</h3>
+                        <p>Unique identifier for each proof:</p>
+                        <ul style="margin: 1.5rem 0 0 1.5rem; color: var(--text-secondary);">
+                            <li><strong>Input:</strong> company_id + timestamp</li>
+                            <li><strong>Hash:</strong> SHA256(concatenated input)</li>
+                            <li><strong>Truncated:</strong> First 16 bytes</li>
+                            <li><strong>Purpose:</strong> Prevent replay attacks</li>
+                            <li><strong>Uniqueness:</strong> Deterministic per proof</li>
+                        </ul>
+                        <p style="margin-top: 1.5rem; color: var(--text-muted); font-size: 0.875rem;">Ensures each proof has unique identifier.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Example Workflow -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Real-World Example</h2>
+                <p class="section-subtitle">Acme Corp negotiating acquisition by TechVenture Inc.</p>
+
+                <div class="card" style="background: var(--bg-tertiary); border-left: 4px solid var(--primary);">
+                    <h3 style="margin-top: 0; color: var(--primary-light);">Scenario</h3>
+                    <p>Acme Corp (seller) wants to prove financial stability to TechVenture Inc (buyer) without revealing exact figures.</p>
+
+                    <table style="width: 100%; margin-top: 2rem;">
+                        <tr>
+                            <th style="text-align: left; padding: 0.75rem 0;">Financial Metric</th>
+                            <th style="text-align: left; padding: 0.75rem 0;">Acme's Value</th>
+                            <th style="text-align: left; padding: 0.75rem 0;">TechVenture Minimum</th>
+                            <th style="text-align: left; padding: 0.75rem 0;">Proof Result</th>
+                        </tr>
+                        <tr style="border-top: 1px solid var(--border-color);">
+                            <td style="padding: 0.75rem 0;">Annual Revenue</td>
+                            <td style="padding: 0.75rem 0;">$50 million</td>
+                            <td style="padding: 0.75rem 0;">≥ $25 million</td>
+                            <td style="padding: 0.75rem 0;"><span class="badge badge-success">✓ Pass</span></td>
+                        </tr>
+                        <tr style="border-top: 1px solid var(--border-color);">
+                            <td style="padding: 0.75rem 0;">Total Assets</td>
+                            <td style="padding: 0.75rem 0;">$80 million</td>
+                            <td style="padding: 0.75rem 0;">≥ $60 million</td>
+                            <td style="padding: 0.75rem 0;"><span class="badge badge-success">✓ Pass</span></td>
+                        </tr>
+                        <tr style="border-top: 1px solid var(--border-color);">
+                            <td style="padding: 0.75rem 0;">Solvency Ratio</td>
+                            <td style="padding: 0.75rem 0;">2.0 (Assets/Liabilities)</td>
+                            <td style="padding: 0.75rem 0;">≥ 1.5</td>
+                            <td style="padding: 0.75rem 0;"><span class="badge badge-success">✓ Pass</span></td>
+                        </tr>
+                        <tr style="border-top: 1px solid var(--border-color);">
+                            <td style="padding: 0.75rem 0;">Net Worth</td>
+                            <td style="padding: 0.75rem 0;">$50 million</td>
+                            <td style="padding: 0.75rem 0;">≥ $30 million</td>
+                            <td style="padding: 0.75rem 0;"><span class="badge badge-success">✓ Pass</span></td>
+                        </tr>
+                        <tr style="border-top: 1px solid var(--border-color);">
+                            <td style="padding: 0.75rem 0;">Debt Ratio</td>
+                            <td style="padding: 0.75rem 0;">0.375 (Liabilities/Assets)</td>
+                            <td style="padding: 0.75rem 0;">≤ 0.5</td>
+                            <td style="padding: 0.75rem 0;"><span class="badge badge-success">✓ Pass</span></td>
+                        </tr>
+                    </table>
+
+                    <div style="margin-top: 2rem; padding: 1rem; background: rgba(16, 185, 129, 0.1); border-radius: 0.5rem; border-left: 4px solid var(--success);">
+                        <p style="margin: 0; color: var(--success);"><strong>Result:</strong> All conditions met! Acme Corp submits signed proof to blockchain. TechVenture can verify all conditions are satisfied without ever knowing exact financial figures.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="section" style="background: var(--bg-secondary);">
+            <div class="container">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+
+                <div class="grid-2">
+                    <div class="card">
+                        <h4 style="color: var(--primary-light); margin-bottom: 0.5rem;">How secure are these proofs?</h4>
+                        <p>Extremely secure. We use SHA256 commitment hashing, ECDSA digital signatures, and nonce protection. Military-grade cryptography ensures proof authenticity and prevents tampering.</p>
+                    </div>
+
+                    <div class="card">
+                        <h4 style="color: var(--primary-light); margin-bottom: 0.5rem;">Can someone forge a proof?</h4>
+                        <p>No. Proofs are cryptographically signed with your company's unique ECDSA key. Any tampering invalidates the signature, making forgery impossible.</p>
+                    </div>
+
+                    <div class="card">
+                        <h4 style="color: var(--primary-light); margin-bottom: 0.5rem;">What if a company lies about their financials?</h4>
+                        <p>The cryptographic commitment hash binds their claimed figures. Any deviation from the saved commitment is detected during verification, exposing dishonesty.</p>
+                    </div>
+
+                    <div class="card">
+                        <h4 style="color: var(--primary-light); margin-bottom: 0.5rem;">How long does proof generation take?</h4>
+                        <p>Typically under 5 seconds. Real-time validation provides instant feedback. Blockchain submission may take additional time depending on network conditions.</p>
+                    </div>
+
+                    <div class="card">
+                        <h4 style="color: var(--primary-light); margin-bottom: 0.5rem;">Can I update a proof?</h4>
+                        <p>Yes! Generate new proofs with updated financials. Previous proofs remain on blockchain for audit trail. This allows deals to stay aligned with current company status.</p>
+                    </div>
+
+                    <div class="card">
+                        <h4 style="color: var(--primary-light); margin-bottom: 0.5rem;">What blockchain does this use?</h4>
+                        <p>Midnight Network - a specialized blockchain designed for privacy-preserving applications. Provides immutable, transparent records while protecting sensitive data.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="section" style="background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--primary-dark) 100%);">
+            <div class="container">
+                <div style="text-align: center;">
+                    <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Ready to Start Creating Proofs?</h2>
+                    <p style="color: var(--text-secondary); margin-bottom: 2rem; font-size: 1.125rem;">Access the full proof generation platform with our interactive dashboard.</p>
+                    <a href="dashboard.html" class="btn btn-primary" style="width: auto; padding: 1rem 2rem; font-size: 1.1rem;">Go to Dashboard</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="footer-content">
+            <div class="footer-wrapper">
+                <!-- Column 1: Brand -->
+                <div class="footer-column">
+                    <h3 class="footer-title">Confidential Merger Board</h3>
+                    <p class="footer-desc">Zero-Knowledge Smart Contract for M&A Negotiations</p>
+                </div>
+
+                <!-- Column 2: Quick Links -->
+                <div class="footer-column">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="landing.html">Home</a></li>
+                        <li><a href="features.html">Features</a></li>
+                        <li><a href="how-it-works.html">How It Works</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Documentation -->
+                <div class="footer-column">
+                    <h3 class="footer-title">Documentation</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Read Me</a></li>
+                        <li><a href="#">Frontend Guide</a></li>
+                        <li><a href="#">Deploy Guide</a></li>
+                        <li><a href="#">Integration</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Technology -->
+                <div class="footer-column">
+                    <h3 class="footer-title">Technology</h3>
+                    <p class="footer-tech">Built with:</p>
+                    <ul class="footer-tech-list">
+                        <li>Zero-Knowledge Proofs</li>
+                        <li>Midnight Network</li>
+                        <li>TypeScript</li>
+                        <li>Compact Language</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-divider"></div>
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <p>&copy; 2026 Confidential Merger Negotiation Board. All rights reserved.</p>
+            <p>Powered by Midnight Network | Version 1.0.0</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

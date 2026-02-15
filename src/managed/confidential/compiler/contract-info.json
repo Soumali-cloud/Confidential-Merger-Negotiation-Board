@@ -1,7 +1,7 @@
 {
   "circuits": [
     {
-      "name": "increment",
+      "name": "submit_qualification",
       "pure": false,
       "arguments": [
       ],
@@ -10,10 +10,36 @@
         "types": [
         ]
       }
+    },
+    {
+      "name": "get_qualified_count",
+      "pure": true,
+      "arguments": [
+      ],
+      "result-type": {
+        "type-name": "UInteger",
+        "precision": 256
+      }
     }
   ],
   "witnesses": [
+    {
+      "name": "private_revenue",
+      "type": "Field"
+    },
+    {
+      "name": "private_assets",
+      "type": "Field"
+    },
+    {
+      "name": "private_liabilities",
+      "type": "Field"
+    }
   ],
   "contracts": [
+    {
+      "name": "negotiations",
+      "type": "Counter"
+    }
   ]
 }

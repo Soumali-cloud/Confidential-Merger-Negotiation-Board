@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proof History - Confidential M&A Board</title>
+    <link rel="stylesheet" href="styles-dark.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="landing.html" class="navbar-brand">
+                <span class="navbar-icon">🔐</span>
+                <span>ZKovenant</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="landing.html" class="nav-link">Home</a></li>
+                <li><a href="features.html" class="nav-link">Features</a></li>
+                <li><a href="how-it-works.html" class="nav-link">How It Works</a></li>
+                <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="section">
+            <div class="container">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                    <div>
+                        <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem;">Proof History</h1>
+                        <p style="color: var(--text-secondary);">View and manage all submitted proofs</p>
+                    </div>
+                    <a href="generate-proof.html" class="btn btn-primary" style="width: auto;">New Proof</a>
+                </div>
+
+                <!-- Filters -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label style="font-size: 0.875rem; margin-bottom: 0.5rem;">Filter by Status</label>
+                        <select id="statusFilter">
+                            <option value="">All Statuses</option>
+                            <option value="verified">✅ Verified</option>
+                            <option value="pending">⏳ Pending</option>
+                            <option value="failed">❌ Failed</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label style="font-size: 0.875rem; margin-bottom: 0.5rem;">Search</label>
+                        <input type="text" id="searchInput" placeholder="Search by company name...">
+                    </div>
+                </div>
+
+                <!-- Proof List -->
+                <div id="proofList" style="margin-bottom: 2rem;">
+                    <div class="card" style="text-align: center; color: var(--text-muted); padding: 2rem;">
+                        <p style="font-size: 1.125rem; margin: 0;">No proofs submitted yet.</p>
+                        <p style="margin-top: 0.5rem;">Start by <a href="generate-proof.html" style="color: var(--primary-light); text-decoration: underline;">creating a new proof</a>.</p>
+                    </div>
+                </div>
+
+                <!-- Statistics -->
+                <div class="grid-3">
+                    <div class="card">
+                        <p style="color: var(--text-muted); font-size: 0.875rem; margin: 0;">Success Rate</p>
+                        <div style="font-size: 2rem; font-weight: 800; margin-top: 0.5rem;" id="successRate">--</div>
+                    </div>
+                    <div class="card">
+                        <p style="color: var(--text-muted); font-size: 0.875rem; margin: 0;">Average Time</p>
+                        <div style="font-size: 2rem; font-weight: 800; margin-top: 0.5rem;" id="avgTime">--</div>
+                    </div>
+                    <div class="card">
+                        <p style="color: var(--text-muted); font-size: 0.875rem; margin: 0;">Total Volume</p>
+                        <div style="font-size: 2rem; font-weight: 800; margin-top: 0.5rem;" id="totalVolume">--</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="footer-content">
+            <div class="footer-wrapper">
+                <!-- Column 1: Brand -->
+                <div class="footer-column">
+                    <h3 class="footer-title">Confidential Merger Board</h3>
+                    <p class="footer-desc">Zero-Knowledge Smart Contract for M&A Negotiations</p>
+                </div>
+
+                <!-- Column 2: Quick Links -->
+                <div class="footer-column">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="landing.html">Home</a></li>
+                        <li><a href="features.html">Features</a></li>
+                        <li><a href="how-it-works.html">How It Works</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Documentation -->
+                <div class="footer-column">
+                    <h3 class="footer-title">Documentation</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Read Me</a></li>
+                        <li><a href="#">Frontend Guide</a></li>
+                        <li><a href="#">Deploy Guide</a></li>
+                        <li><a href="#">Integration</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Technology -->
+                <div class="footer-column">
+                    <h3 class="footer-title">Technology</h3>
+                    <p class="footer-tech">Built with:</p>
+                    <ul class="footer-tech-list">
+                        <li>Zero-Knowledge Proofs</li>
+                        <li>Midnight Network</li>
+                        <li>TypeScript</li>
+                        <li>Compact Language</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-divider"></div>
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <p>&copy; 2026 Confidential Merger Negotiation Board. All rights reserved.</p>
+            <p>Powered by Midnight Network | Version 1.0.0</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+    <script>
+        // Load and display history
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProofHistory();
+            setupEventListeners();
+        });
+
+        function loadProofHistory() {
+            const proofs = JSON.parse(localStorage.getItem('proofHistory') || '[]');
+            const proofList = document.getElementById('proofList');
+
+            if (proofs.length === 0) {
+                return;
+            }
+
+            proofList.innerHTML = proofs.map(proof => `
+                <div class="card" style="margin-bottom: 1rem; border-left: 4px solid ${proof.status === 'verified' ? 'var(--success)' : proof.status === 'pending' ? 'var(--warning)' : 'var(--danger)'};">
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1rem;">
+                        <div style="flex: 1;">
+                            <h3 style="margin: 0 0 0.5rem 0;">${proof.companyName}</h3>
+                            <p style="margin: 0; font-size: 0.875rem; color: var(--text-muted);">ID: ${proof.companyId}</p>
+                        </div>
+                        <div style="text-align: right;">
+                            ${proof.status === 'verified' ? '<span class="badge badge-success">✅ Verified</span>' : proof.status === 'pending' ? '<span class="badge badge-warning">⏳ Pending</span>' : '<span class="badge badge-danger">❌ Failed</span>'}
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin: 1rem 0; padding: 1rem 0; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+                        <div>
+                            <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0;">Revenue Proof</p>
+                            <p style="margin: 0.5rem 0 0 0; color: ${proof.revenueProof ? 'var(--success)' : 'var(--danger)'};">✓</p>
+                        </div>
+                        <div>
+                            <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0;">Asset Proof</p>
+                            <p style="margin: 0.5rem 0 0 0; color: ${proof.assetProof ? 'var(--success)' : 'var(--danger)'};">✓</p>
+                        </div>
+                        <div>
+                            <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0;">Solvency Proof</p>
+                            <p style="margin: 0.5rem 0 0 0; color: ${proof.solvencyProof ? 'var(--success)' : 'var(--danger)'};">✓</p>
+                        </div>
+                        <div>
+                            <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0;">Net Worth Proof</p>
+                            <p style="margin: 0.5rem 0 0 0; color: ${proof.netWorthProof ? 'var(--success)' : 'var(--danger)'};">✓</p>
+                        </div>
+                        <div>
+                            <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0;">Debt Ratio Proof</p>
+                            <p style="margin: 0.5rem 0 0 0; color: ${proof.debtProof ? 'var(--success)' : 'var(--danger)'};">✓</p>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.875rem; color: var(--text-muted);">
+                        <span>Submitted: ${new Date(proof.timestamp).toLocaleString()}</span>
+                        <span>Hash: ${proof.commitmentHash?.slice(0, 16)}...</span>
+                    </div>
+                </div>
+            `).join('');
+
+            // Update statistics
+            updateStatistics(proofs);
+        }
+
+        function updateStatistics(proofs) {
+            const verified = proofs.filter(p => p.status === 'verified').length;
+            const successRate = proofs.length > 0 ? Math.round((verified / proofs.length) * 100) + '%' : '--';
+            document.getElementById('successRate').textContent = successRate;
+            document.getElementById('totalVolume').textContent = proofs.length;
+            document.getElementById('avgTime').textContent = '~4 min';
+        }
+
+        function setupEventListeners() {
+            document.getElementById('statusFilter').addEventListener('change', filterProofs);
+            document.getElementById('searchInput').addEventListener('input', filterProofs);
+        }
+
+        function filterProofs() {
+            const status = document.getElementById('statusFilter').value;
+            const search = document.getElementById('searchInput').value.toLowerCase();
+            const proofs = JSON.parse(localStorage.getItem('proofHistory') || '[]');
+
+            const filtered = proofs.filter(p => 
+                (!status || p.status === status) &&
+                (!search || p.companyName.toLowerCase().includes(search))
+            );
+
+            const proofList = document.getElementById('proofList');
+            if (filtered.length === 0) {
+                proofList.innerHTML = '<div class="card" style="text-align: center; color: var(--text-muted);"><p>No matching proofs found.</p></div>';
+                return;
+            }
+
+            proofList.innerHTML = filtered.map(proof => `
+                <div class="card" style="margin-bottom: 1rem; border-left: 4px solid ${proof.status === 'verified' ? 'var(--success)' : proof.status === 'pending' ? 'var(--warning)' : 'var(--danger)'};">
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1rem;">
+                        <div style="flex: 1;">
+                            <h3 style="margin: 0 0 0.5rem 0;">${proof.companyName}</h3>
+                            <p style="margin: 0; font-size: 0.875rem; color: var(--text-muted);">ID: ${proof.companyId}</p>
+                        </div>
+                        <div style="text-align: right;">
+                            ${proof.status === 'verified' ? '<span class="badge badge-success">✅ Verified</span>' : proof.status === 'pending' ? '<span class="badge badge-warning">⏳ Pending</span>' : '<span class="badge badge-danger">❌ Failed</span>'}
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin: 1rem 0; padding: 1rem 0; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+                        <div>
+                            <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0;">Revenue Proof</p>
+                            <p style="margin: 0.5rem 0 0 0; color: ${proof.revenueProof ? 'var(--success)' : 'var(--danger)'};">✓</p>
+                        </div>
+                        <div>
+                            <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0;">Asset Proof</p>
+                            <p style="margin: 0.5rem 0 0 0; color: ${proof.assetProof ? 'var(--success)' : 'var(--danger)'};">✓</p>
+                        </div>
+                        <div>
+                            <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0;">Solvency Proof</p>
+                            <p style="margin: 0.5rem 0 0 0; color: ${proof.solvencyProof ? 'var(--success)' : 'var(--danger)'};">✓</p>
+                        </div>
+                        <div>
+                            <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0;">Net Worth Proof</p>
+                            <p style="margin: 0.5rem 0 0 0; color: ${proof.netWorthProof ? 'var(--success)' : 'var(--danger)'};">✓</p>
+                        </div>
+                        <div>
+                            <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0;">Debt Ratio Proof</p>
+                            <p style="margin: 0.5rem 0 0 0; color: ${proof.debtProof ? 'var(--success)' : 'var(--danger)'};">✓</p>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.875rem; color: var(--text-muted);">
+                        <span>Submitted: ${new Date(proof.timestamp).toLocaleString()}</span>
+                        <span>Hash: ${proof.commitmentHash?.slice(0, 16)}...</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+    </script>
+</body>
+</html>

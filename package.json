@@ -4,15 +4,19 @@
   "description": "Confidential Merger Negotiation Board - ZK contract for M&A negotiations",
   "type": "module",
   "scripts": {
+    "setup": "node -e \"console.log('Run: npm install && npm run build')\"",
     "compile": "compact compile src/counter.compact src/managed/counter",
     "compile:voting": "compact compile src/voting.compact src/managed/voting",
     "compile:confidential": "compact compile src/Confidential.compact src/managed/confidential",
-    "build": "tsc",
+    "build": "npm run compile:confidential && tsc",
     "deploy": "node dist/deploy.js",
     "deploy:voting": "node dist/deploy-voting.js",
     "deploy:confidential": "node dist/deploy-confidential.js",
     "verify": "node dist/verify-deployment.js",
-    "verify:network": "node dist/verify-deployment.js --check-network"
+    "verify:network": "node dist/verify-deployment.js --check-network",
+    "frontend": "node frontend/server.js",
+    "frontend:dev": "node frontend/server.js",
+    "dev": "node frontend/server.js"
   },
   "dependencies": {
     "@midnight-ntwrk/compact-js": "2.4.0",

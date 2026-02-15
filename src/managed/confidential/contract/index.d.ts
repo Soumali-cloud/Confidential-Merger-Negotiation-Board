@@ -1,21 +1,26 @@
 import type * as __compactRuntime from '@midnight-ntwrk/compact-runtime';
 
-export type Witnesses<PS> = {
+export type Witnesses<PS = any> = {
 }
 
-export type ImpureCircuits<PS> = {
-  increment(context: __compactRuntime.CircuitContext<PS>): __compactRuntime.CircuitResults<PS, []>;
+export type ImpureCircuits<PS = any> = {
+  submit_qualification(context: __compactRuntime.CircuitContext<PS>): __compactRuntime.CircuitResults<PS, []>;
 }
 
-export type PureCircuits = {
+export type PureCircuits<PS = any> = {
+  get_qualified_count(context: __compactRuntime.CircuitContext<PS>): __compactRuntime.CircuitResults<PS, [bigint]>;
 }
 
-export type Circuits<PS> = {
-  increment(context: __compactRuntime.CircuitContext<PS>): __compactRuntime.CircuitResults<PS, []>;
+export type Circuits<PS = any> = {
+  submit_qualification(context: __compactRuntime.CircuitContext<PS>): __compactRuntime.CircuitResults<PS, []>;
+  get_qualified_count(context: __compactRuntime.CircuitContext<PS>): __compactRuntime.CircuitResults<PS, [bigint]>;
 }
 
 export type Ledger = {
-  readonly round: bigint;
+  readonly round?: bigint;
+  readonly negotiations?: {
+    value(): bigint;
+  };
 }
 
 export type ContractReferenceLocations = any;

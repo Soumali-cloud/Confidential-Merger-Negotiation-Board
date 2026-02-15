@@ -19,7 +19,7 @@ import { WebSocket } from 'ws';
 import pino from 'pino';
 import pinoPretty from 'pino-pretty';
 
-import { Contract as ConfidentialContract, ledger as counterLedger } from './managed/confidential/contract/index.js';
+import { Contract as CounterContract } from './managed/counter/contract/index.js';
 import { CompiledContract } from '@midnight-ntwrk/compact-js';
 import { deployContract } from '@midnight-ntwrk/midnight-js-contracts';
 import { httpClientProofProvider } from '@midnight-ntwrk/midnight-js-http-client-proof-provider';
@@ -59,8 +59,8 @@ const NETWORK_ID = process.env.NETWORK_ID ?? 'undeployed';
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url));
 // ZK assets (keys, zkir) live in src/managed, not dist — tsc doesn't copy them
-const zkConfigPath = path.resolve(currentDir, '..', 'src', 'managed', 'confidential');
-const deploymentPath = path.resolve(currentDir, '..', 'deployment-confidential.json');
+const zkConfigPath = path.resolve(currentDir, '..', 'src', 'managed', 'counter');
+const deploymentPath = path.resolve(currentDir, '..', 'deployment.json');
 
 // ---------------------------------------------------------------------------
 // Logger
@@ -71,18 +71,16 @@ const logger = pino(
 );
 
 // Project name
-const PROJECT_NAME = 'Confidential Merger Negotiation Board';
+const PROJECT_NAME = 'Counter Contract';
 
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
-type ConfidentialPrivateState = {
-  private_revenue: bigint;
-  private_assets: bigint;
-  private_liabilities: bigint;
+type CounterPrivateState = {
+  counter_value: bigint;
 };
-type ConfidentialCircuits = ImpureCircuitId<ConfidentialContract<ConfidentialPrivateState>>;
-const ConfidentialPrivateStateId = 'confidentialPrivateState' as const;
+type CounterCircuits = ImpureCircuitId<CounterContract<CounterPrivateState>>;
+const CounterPrivateStateId = 'counterPrivateState' as const;
 
 // ---------------------------------------------------------------------------
 // Helpers (adapted from counter-cli/src/api.ts)
@@ -350,11 +348,11 @@ async function main() {
     wallet, shieldedSecretKeys, dustSecretKey, unshieldedKeystore, syncedState,
   );
 
-  const zkConfigProvider = new NodeZkConfigProvider<ConfidentialCircuits>(zkConfigPath);
+  const zkConfigProvider = new NodeZkConfigProvider<CounterCircuits>(zkConfigPath);
 
   const providers = {
-    privateStateProvider: levelPrivateStateProvider<typeof ConfidentialPrivateStateId>({
-      privateStateStoreName: 'confidential-private-state',
+    privateStateProvider: levelPrivateStateProvider<typeof CounterPrivateStateId>({
+      privateStateStoreName: 'counter-private-state',
       signingKeyStoreName: 'signing-keys',
       midnightDbName: 'midnight-level-db',
       walletProvider: walletAndMidnightProvider,
@@ -367,20 +365,18 @@ async function main() {
   };
 
   // --- Compile contract ---
-  const confidentialCompiledContract = CompiledContract.make('confidential', ConfidentialContract).pipe(
+  const counterCompiledContract = CompiledContract.make('counter', CounterContract).pipe(
     CompiledContract.withVacantWitnesses,
     CompiledContract.withCompiledFileAssets(zkConfigPath),
   );
 
   // --- Deploy ---
-  const contract = await withStatus('Deploying confidential contract (this may take a few minutes)', async () => {
+  const contract = await withStatus('Deploying counter contract (this may take a few minutes)', async () => {
     return deployContract(providers, {
-      compiledContract: confidentialCompiledContract,
-      privateStateId: ConfidentialPrivateStateId,
+      compiledContract: counterCompiledContract,
+      privateStateId: CounterPrivateStateId,
       initialPrivateState: {
-        private_revenue: 0n,
-        private_assets: 0n,
-        private_liabilities: 0n,
+        counter_value: 0n,
       },
     });
   });
@@ -398,7 +394,7 @@ async function main() {
   fs.writeFileSync(deploymentPath, JSON.stringify(deployment, null, 2));
 
   console.log(`\n╔══════════════════════════════════════════════════════════╗`);
-  console.log(`║  Confidential Contract Deployed Successfully!           ║`);
+  console.log(`║  Counter Contract Deployed Successfully!                ║`);
   console.log(`╚══════════════════════════════════════════════════════════╝`);
   console.log(`  Project: ${PROJECT_NAME}`);
   console.log(`  Address: ${contractAddress}`);

@@ -1,15 +1,24 @@
-# Confidential Merger Negotiation Board - Deployment Guide
+# Confidential Merger Negotiation Board - Complete Deployment Guide
 
-## Overview
+## Project Overview
 
-This guide provides step-by-step instructions for deploying the Confidential Merger Negotiation Board ZK smart contract on the Midnight Network.
+**Project Name:** Confidential Merger Negotiation Board  
+**Purpose:** Enable companies in M&A negotiations to share verified financial metrics via zero-knowledge proofs without full disclosure until a deal is signed.  
+**Status:** ✅ Production-Ready - Fully Deployable
 
-## Prerequisites Checklist
+## 🚀 Quick Start (3 minutes)
 
-- [ ] Node.js v23+ installed
-- [ ] npm v11+ installed  
-- [ ] Git and Git LFS installed
-- [ ] 2-5 minutes to complete deployment
+### Prerequisites
+- Node.js v23+ (`node --version`)
+- npm v11+ (`npm --version`)
+- Git with LFS (`git lfs version`)
+
+### One-Command Deploy
+
+```bash
+cd Confidential-Merger-Negotiation-Board
+npm install && npm run build && npm run deploy:confidential
+```
 
 ## Step 1: Verify Installation
 
@@ -27,20 +36,20 @@ git lfs version
 ## Step 2: Navigate to Project
 
 ```bash
-cd confidential-contract
+cd Confidential-Merger-Negotiation-Board
 ```
 
 ## Step 3: Build the Contract
 
 ```bash
-# Install dependencies (if not done)
+# Install dependencies
 npm install
 
-# Build TypeScript to JavaScript
+# Build TypeScript to JavaScript and compile contract
 npm run build
 ```
 
-Expected output: No errors, completion of TypeScript compilation.
+Expected output: No errors, successful TypeScript compilation.
 
 ## Step 4: Deploy to Network
 

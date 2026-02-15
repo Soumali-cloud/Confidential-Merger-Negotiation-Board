@@ -1,11 +1,11 @@
 /**
- * Standalone deploy script for the counter contract.
+ * Standalone deploy script for the confidential contract.
  *
  * Usage:
  *   npm run build && npm run deploy
  *
  * Prompts for a hex seed (or generates a new one), builds a wallet,
- * waits for sync + funds + dust, deploys the counter contract,
+ * waits for sync + funds + dust, deploys the confidential contract,
  * and writes deployment.json with the contract address.
  */
 
@@ -19,7 +19,7 @@ import { WebSocket } from 'ws';
 import pino from 'pino';
 import pinoPretty from 'pino-pretty';
 
-import { Contract as ConfidentialContract, ledger as counterLedger } from './managed/confidential/contract/index.js';
+import { Contract as ConfidentialContract } from './managed/confidential/contract/index.js';
 import { CompiledContract } from '@midnight-ntwrk/compact-js';
 import { deployContract } from '@midnight-ntwrk/midnight-js-contracts';
 import { httpClientProofProvider } from '@midnight-ntwrk/midnight-js-http-client-proof-provider';

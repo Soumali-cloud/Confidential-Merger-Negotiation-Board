@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confidential M&A Board - Zero-Knowledge Proof System</title>
+    <link rel="stylesheet" href="styles-enhanced.css">
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="navbar-container">
+                <div class="navbar-brand">
+                    <div class="brand-icon">🔐</div>
+                    <h1>Confidential M&A Board</h1>
+                    <span class="brand-subtitle">Zero-Knowledge Proof System</span>
+                </div>
+                <ul class="nav-items">
+                    <li><a href="#dashboard" class="nav-link active">Dashboard</a></li>
+                    <li><a href="#generate" class="nav-link">Generate Proof</a></li>
+                    <li><a href="#verify" class="nav-link">Verify Status</a></li>
+                    <li><a href="#history" class="nav-link">History</a></li>
+                    <li><button class="btn-connect-wallet" onclick="connectWallet()">Connect Wallet</button></li>
+                </ul>
+            </div>
+        </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section">
+            <div class="container">
+                <h2 class="section-title">Dashboard</h2>
+
+                <!-- Network Status -->
+                <div class="network-status-card">
+                    <div class="status-header">
+                        <h3>Network Status</h3>
+                        <span class="status-indicator online" id="networkIndicator">● Online</span>
+                    </div>
+                    <div class="status-grid">
+                        <div class="status-item">
+                            <label>Network</label>
+                            <span id="networkName">Local Network (Dev)</span>
+                        </div>
+                        <div class="status-item">
+                            <label>Active Deals</label>
+                            <span id="activeDealCount">0</span>
+                        </div>
+                        <div class="status-item">
+                            <label>Qualified Companies</label>
+                            <span id="qualifiedCount">0</span>
+                        </div>
+                        <div class="status-item">
+                            <label>Total Proofs</label>
+                            <span id="totalProofs">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">📊</div>
+                        <h4>Total Proofs Submitted</h4>
+                        <div class="stat-value" id="statProofs">0</div>
+                        <p class="stat-label">Since deployment</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">✓</div>
+                        <h4>Verified Companies</h4>
+                        <div class="stat-value" id="statVerified">0</div>
+                        <p class="stat-label">Qualified & Active</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🤝</div>
+                        <h4>Active Negotiations</h4>
+                        <div class="stat-value" id="statDeals">0</div>
+                        <p class="stat-label">In progress</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🔒</div>
+                        <h4>Data Privacy</h4>
+                        <div class="stat-value">100%</div>
+                        <p class="stat-label">End-to-end</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Generate & Submit Proof Section -->
+        <section id="generate" class="section">
+            <div class="container">
+                <h2 class="section-title">🔐 Generate & Submit Zero-Knowledge Proof</h2>
+
+                <div class="proof-generation-container">
+                    <!-- Left: Input Form -->
+                    <div class="proof-form-panel">
+                        <h3>Company Information & Financial Data</h3>
+
+                        <form id="proofForm" class="proof-form">
+                            <!-- Company Identity -->
+                            <fieldset>
+                                <legend>Company Identity</legend>
+                                <div class="form-group">
+                                    <label>Company Name *</label>
+                                    <input type="text" id="companyName" placeholder="Enter company name" required>
+                                    <small>✓ This is verified on-chain</small>
+                                </div>
+                                <div class="form-group">
+                                    <label>Company ID / Tax ID *</label>
+                                    <input type="text" id="companyId" placeholder="e.g., EIN-12-3456789" required>
+                                    <small>✓ Used to generate commitment signature</small>
+                                </div>
+                                <div class="form-group">
+                                    <label>Wallet Address *</label>
+                                    <input type="text" id="walletAddress" placeholder="0x..." required readonly>
+                                    <small>🔗 Connected wallet</small>
+                                </div>
+                            </fieldset>
+
+                            <!-- Financial Data (Private) -->
+                            <fieldset>
+                                <legend>Confidential Financial Data</legend>
+                                <p class="privacy-notice">💡 This data stays on your device and is NEVER sent to blockchain</p>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Annual Revenue (M$) *</label>
+                                        <input type="number" id="revenue" 
+                                               placeholder="e.g., 250" min="0" step="0.01" required>
+                                        <small>📈 Millions of dollars</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Total Assets (M$) *</label>
+                                        <input type="number" id="assets" 
+                                               placeholder="e.g., 1000" min="0" step="0.01" required>
+                                        <small>💰 Total asset value</small>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Total Liabilities (M$) *</label>
+                                        <input type="number" id="liabilities" 
+                                               placeholder="e.g., 200" min="0" step="0.01" required>
+                                        <small>📉 Total debt</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Solvency Check</label>
+                                        <div class="solvency-indicator" id="solvencyCheck">
+                                            <span class="status-badge pending">⏳ Enter data</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <!-- Deal Parameters -->
+                            <fieldset>
+                                <legend>Deal Parameters</legend>
+                                <div class="form-group">
+                                    <label>Deal Name *</label>
+                                    <input type="text" id="dealName" 
+                                           placeholder="e.g., Q2 2026 Merger Negotiation" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Deal ID / Reference *</label>
+                                    <input type="text" id="dealId" 
+                                           placeholder="e.g., DEAL-2026-001" required>
+                                </div>
+                            </fieldset>
+
+                            <!-- Qualification Thresholds -->
+                            <fieldset>
+                                <legend>Qualification Thresholds</legend>
+                                <p class="threshold-note">📋 These are public parameters - all companies know these requirements</p>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Minimum Revenue (M$)</label>
+                                        <input type="number" id="minRevenue" 
+                                               value="100" min="0" step="0.01" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Minimum Assets (M$)</label>
+                                        <input type="number" id="minAssets" 
+                                               value="500" min="0" step="0.01" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Minimum Net Worth (M$)</label>
+                                        <input type="number" id="minNetWorth" 
+                                               value="300" min="0" step="0.01" required>
+                                        <small>Assets - Liabilities</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Max Debt Ratio</label>
+                                        <input type="number" id="maxDebtRatio" 
+                                               value="2" min="0.1" step="0.1" required>
+                                        <small>Assets / Liabilities ≥ this</small>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <!-- Action Buttons -->
+                            <div class="form-actions">
+                                <button type="button" class="btn-secondary" onclick="resetForm()">
+                                    ↺ Reset Form
+                                </button>
+                                <button type="submit" class="btn-primary btn-large">
+                                    🔐 Generate & Submit Proof
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Right: Proof Status Panel -->
+                    <div class="proof-status-panel">
+                        <h3>Proof Generation Status</h3>
+
+                        <!-- Status Steps -->
+                        <div class="status-steps">
+                            <div class="step" id="step-validation">
+                                <div class="step-icon">1</div>
+                                <div class="step-content">
+                                    <h4>Data Validation</h4>
+                                    <p>Checking financial data integrity</p>
+                                </div>
+                                <div class="step-status">⏳</div>
+                            </div>
+
+                            <div class="step" id="step-commitment">
+                                <div class="step-icon">2</div>
+                                <div class="step-content">
+                                    <h4>Commitment Generation</h4>
+                                    <p>Creating cryptographic binding</p>
+                                </div>
+                                <div class="step-status">⏳</div>
+                            </div>
+
+                            <div class="step" id="step-proof">
+                                <div class="step-icon">3</div>
+                                <div class="step-content">
+                                    <h4>Proof Generation</h4>
+                                    <p>Building zero-knowledge proof</p>
+                                </div>
+                                <div class="step-status">⏳</div>
+                            </div>
+
+                            <div class="step" id="step-signature">
+                                <div class="step-icon">4</div>
+                                <div class="step-content">
+                                    <h4>Digital Signature</h4>
+                                    <p>Signing proof with company key</p>
+                                </div>
+                                <div class="step-status">⏳</div>
+                            </div>
+
+                            <div class="step" id="step-submission">
+                                <div class="step-icon">5</div>
+                                <div class="step-content">
+                                    <h4>Blockchain Submission</h4>
+                                    <p>Submitting to smart contract</p>
+                                </div>
+                                <div class="step-status">⏳</div>
+                            </div>
+                        </div>
+
+                        <!-- Commitment Hash Display -->
+                        <div class="commitment-info-box">
+                            <h4>🔗 Commitment Hash</h4>
+                            <p class="commitment-hash" id="commitmentHash">
+                                Waiting for data...
+                            </p>
+                            <small>Cryptographic binding of financial data</small>
+                        </div>
+
+                        <!-- Proof Metadata -->
+                        <div class="metadata-box">
+                            <h4>📋 Proof Metadata</h4>
+                            <div class="metadata-item">
+                                <span>Proof ID:</span>
+                                <code id="proofId">—</code>
+                            </div>
+                            <div class="metadata-item">
+                                <span>Generated At:</span>
+                                <span id="generatedAt">—</span>
+                            </div>
+                            <div class="metadata-item">
+                                <span>Expires At:</span>
+                                <span id="expiresAt">—</span>
+                            </div>
+                            <div class="metadata-item">
+                                <span>Status:</span>
+                                <span class="badge pending" id="proofStatus">Pending</span>
+                            </div>
+                        </div>
+
+                        <!-- Conditions Check -->
+                        <div class="conditions-check-box">
+                            <h4>✓ Qualification Conditions</h4>
+                            <div class="condition" id="cond-revenue">
+                                <span class="condition-status">⏳</span>
+                                <span>Revenue ≥ Threshold</span>
+                            </div>
+                            <div class="condition" id="cond-assets">
+                                <span class="condition-status">⏳</span>
+                                <span>Assets ≥ Threshold</span>
+                            </div>
+                            <div class="condition" id="cond-solvency">
+                                <span class="condition-status">⏳</span>
+                                <span>Assets > Liabilities</span>
+                            </div>
+                            <div class="condition" id="cond-networth">
+                                <span class="condition-status">⏳</span>
+                                <span>Net Worth ≥ Threshold</span>
+                            </div>
+                            <div class="condition" id="cond-debtatio">
+                                <span class="condition-status">⏳</span>
+                                <span>Debt Ratio Valid</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Verify Status Section -->
+        <section id="verify" class="section">
+            <div class="container">
+                <h2 class="section-title">🔍 Verify Proof Status</h2>
+
+                <div class="verify-container">
+                    <div class="verify-form">
+                        <h3>Query Proof Verification</h3>
+                        <div class="form-group">
+                            <label>Proof ID or Commitment Hash</label>
+                            <input type="text" id="verifyProofId" 
+                                   placeholder="Enter proof ID or commitment hash">
+                        </div>
+                        <button class="btn-primary" onclick="verifyProof()">
+                            🔍 Verify Proof
+                        </button>
+                    </div>
+
+                    <div class="verification-result" id="verificationResult" style="display:none;">
+                        <h3>Verification Result</h3>
+                        <div class="result-content">
+                            <div class="result-item">
+                                <label>Status:</label>
+                                <span class="badge success" id="resultStatus">✓ Verified</span>
+                            </div>
+                            <div class="result-item">
+                                <label>Company:</label>
+                                <span id="resultCompany">—</span>
+                            </div>
+                            <div class="result-item">
+                                <label>Deal:</label>
+                                <span id="resultDeal">—</span>
+                            </div>
+                            <div class="result-item">
+                                <label>Verified At:</label>
+                                <span id="resultTime">—</span>
+                            </div>
+                            <div class="result-item">
+                                <label>Proof Hash:</label>
+                                <code id="resultHash">—</code>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- History Section -->
+        <section id="history" class="section">
+            <div class="container">
+                <h2 class="section-title">📜 Submission History</h2>
+
+                <div class="history-filters">
+                    <input type="text" id="filterCompany" placeholder="Filter by company...">
+                    <select id="filterStatus">
+                        <option value="">All Status</option>
+                        <option value="verified">Verified</option>
+                        <option value="pending">Pending</option>
+                        <option value="failed">Failed</option>
+                    </select>
+                    <button class="btn-secondary" onclick="refreshHistory()">🔄 Refresh</button>
+                </div>
+
+                <div class="history-table">
+                    <table id="submissionTable">
+                        <thead>
+                            <tr>
+                                <th>Company</th>
+                                <th>Deal</th>
+                                <th>Commitment Hash</th>
+                                <th>Status</th>
+                                <th>Timestamp</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historyBody">
+                            <tr class="empty-state">
+                                <td colspan="6">No submissions yet</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Information Section -->
+        <section class="section info-section">
+            <div class="container">
+                <h2 class="section-title">How It Works</h2>
+
+                <div class="info-grid">
+                    <div class="info-box">
+                        <h4>🔐 Phase 1: Commitment Generation</h4>
+                        <p>Your financial data (Revenue, Assets, Liabilities) is hashed with a secret nonce to create a cryptographic commitment. This commitment binds you to specific financial figures.</p>
+                    </div>
+                    <div class="info-box">
+                        <h4>🧮 Phase 2: Proof Generation</h4>
+                        <p>A zero-knowledge proof is generated that proves all conditions are met (revenue threshold, assets threshold, solvency, net worth, debt ratio) WITHOUT revealing the actual numbers.</p>
+                    </div>
+                    <div class="info-box">
+                        <h4>✍️ Phase 3: Digital Signature</h4>
+                        <p>The proof is signed with your company's private key, proving that you authorized this proof generation and preventing others from submitting on your behalf.</p>
+                    </div>
+                    <div class="info-box">
+                        <h4>⛓️ Phase 4: Blockchain Verification</h4>
+                        <p>The commitment hash and proof are submitted to the smart contract. The network verifies the proof mathematically, without learning your financial data.</p>
+                    </div>
+                    <div class="info-box">
+                        <h4>☑️ Phase 5: On-Chain Result</h4>
+                        <p>Your company is marked as "qualified" on the blockchain. Public ledger shows you passed, but not your actual numbers. Deal negotiations can proceed securely.</p>
+                    </div>
+                    <div class="info-box">
+                        <h4>🔍 Phase 6: Auditability</h4>
+                        <p>If needed, you can reveal the commitment hash + proof to auditorsfor verification against your full financial details. Complete transparency to trusted parties only.</p>
+                    </div>
+                </div>
+
+                <div class="security-note">
+                    <h4>🛡️ Security & Privacy Guarantees</h4>
+                    <ul>
+                        <li><strong>Data Privacy:</strong> Financial figures never leave your device or blockchain</li>
+                        <li><strong>Proof Authenticity:</strong> Only you can generate valid proofs with your data</li>
+                        <li><strong>Non-Repudiation:</strong> Your signature proves you authorized the proof</li>
+                        <li><strong>Immutability:</strong> Once verified, results are permanently recorded on-chain</li>
+                        <li><strong>Auditability:</strong> You can selectively disclose commitment details to auditors</li>
+                        <li><strong>Reproducibility:</strong> Proofs can be regenerated with same data + nonce combination</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h5>Confidential M&A Board</h5>
+                <p>Zero-Knowledge Smart Contract for Secure Negotiations</p>
+            </div>
+            <div class="footer-section">
+                <h5>Quick Links</h5>
+                <ul>
+                    <li><a href="#dashboard">Dashboard</a></li>
+                    <li><a href="#generate">Generate Proof</a></li>
+                    <li><a href="#history">History</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h5>Technology</h5>
+                <p>ZK Proofs • Midnight Network • ECDSA Signatures</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Confidential M&A Board. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div id="proofSuccessModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>✓ Proof Submitted Successfully</h3>
+                <button class="modal-close" onclick="closeModal('proofSuccessModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="success-icon">✓</div>
+                <p id="successMessage"></p>
+                <div class="proof-details">
+                    <div class="detail">
+                        <label>Company:</label>
+                        <span id="modalCompany"></span>
+                    </div>
+                    <div class="detail">
+                        <label>Deal:</label>
+                        <span id="modalDeal"></span>
+                    </div>
+                    <div class="detail">
+                        <label>Proof ID:</label>
+                        <code id="modalProofId"></code>
+                    </div>
+                    <div class="detail">
+                        <label>Commitment:</label>
+                        <code id="modalCommitment"></code>
+                    </div>
+                    <div class="detail">
+                        <label>Status:</label>
+                        <span class="badge success">✓ Verified on-chain</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeModal('proofSuccessModal')">Close</button>
+                <button class="btn-primary" onclick="submitAnother()">Submit Another Proof</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script-enhanced.js"></script>
+</body>
+</html>
