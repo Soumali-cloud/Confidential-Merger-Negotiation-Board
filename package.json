@@ -8,7 +8,7 @@
     "compile": "compact compile src/counter.compact src/managed/counter",
     "compile:voting": "compact compile src/voting.compact src/managed/voting",
     "compile:confidential": "compact compile src/Confidential.compact src/managed/confidential",
-    "build": "npm run compile:confidential && tsc",
+    "build": "npm run compile:c=Confidential && tsc",
     "deploy": "node dist/deploy.js",
     "deploy:voting": "node dist/deploy-voting.js",
     "deploy:confidential": "node dist/deploy-confidential.js",
